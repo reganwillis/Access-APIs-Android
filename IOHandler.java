@@ -1,4 +1,3 @@
-package access_apis;
 import android.content.Context;
 import org.json.JSONException;
 import org.json.JSONObject;
