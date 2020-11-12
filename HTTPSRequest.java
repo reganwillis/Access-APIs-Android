@@ -5,11 +5,17 @@ import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
 import javax.net.ssl.HttpsURLConnection;
+import org.json.JSONException;
+import org.json.JSONObject;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 
 public class HTTPSRequest implements Runnable {
     private String URL;
     private HttpsURLConnection conn;
-    private int responseCode;
+    private String content;
+    private JSONObject response;
     private static final String ERROR_MSG = "\nError occured while querying API:\n";
     
     /**
@@ -33,8 +39,13 @@ public class HTTPSRequest implements Runnable {
             site = new URL(URL);
             conn = (HttpsURLConnection) site.openConnection();
             conn.setRequestMethod("GET");
-            this.responseCode = conn.getResponseCode();
-            Log.d("display", this.responseCode + " " + conn.getResponseCode());  // debug
+            content = readInputStream(conn.getInputStream());
+
+            try {
+                response = new JSONObject(content);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
         } catch (MalformedURLException | ProtocolException e) {
             System.out.println(ERROR_MSG);
             e.printStackTrace();
@@ -45,11 +56,37 @@ public class HTTPSRequest implements Runnable {
     }
 
     /**
-     * Called from MainActivity after thread is finished running.
-     * @return InputStream of API response
+     * Called from MainActivity after thread is finished running
+     * @return JSONObject holding what was read | null
+     */
+    public JSONObject getResponse() {
+
+        if (response != null) {
+            return response;
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * Reads InputStream object into a String using
+     * a BufferedReader.
+     * @param stream - InputStream object returned from GET request
+     * @return String of content from get request
      * @throws IOException
      */
-    public InputStream getResponse() throws IOException {
-        return conn.getInputStream();
+    public String readInputStream(InputStream stream) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(stream));
+        String currLine;
+        String insContent = "";
+        int bufferLength = 0;
+
+        while ((currLine = br.readLine()) != null) {
+            bufferLength += currLine.length();
+            insContent = insContent + currLine + "\n";
+        }
+        br.close();
+
+        return insContent;
     }
 }
