@@ -1,3 +1,5 @@
+// Written by Regan Willis 2020
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
