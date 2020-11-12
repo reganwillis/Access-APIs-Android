@@ -6,6 +6,12 @@ The code in this repository shows a clean way to access APIs in Android Java dev
 * HTTPSRequest -- makes a GET request to get information from an API
 * IOHandler -- writes an input stream to a file and reads the file
 
+# link to article
+
 # Usage
 
-To use this code in your application, HTTPSRequest and IOHandler can be brought straight into your project and do not need any editing. The MainActivity class has the function queryAPI. This function can be used in activities in your application to access the classes.
+To use this code in your application, HTTPSRequest and IOHandler can be brought straight into your project and do not need any editing, except to add them to your application package at the top of the file. The MainActivity class has the function queryAPI. This function can be used in activities in your application to access the classes.
+
+### permissions in android manifest
+
+# link to other http repo
