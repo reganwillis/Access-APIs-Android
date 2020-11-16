@@ -1,6 +1,6 @@
 # Access-APIs-Android
 
-The HTTPSRequest class makes HTTPS GET requests to whatever URL you pass in. From MainActivity, you can pass an API query with specified parameters and a key that matches the JSON returned from the API. The HTTPSRequest class will run in a new thread to get the value that matches your key. For a deeper explanation of why the code was built this way, [click here]().
+The HTTPSRequest class makes HTTPS GET requests to whatever URL you pass in. From MainActivity, you can pass an API query with specified parameters and a key that matches the JSON returned from the API. The HTTPSRequest class will run in a new thread to get the value that matches your key. For a deeper explanation of why the code was built this way, [click here](https://medium.com/@reganwillis/android-development-querying-an-api-with-java-997384a1e787).
 
 ## Usage
 
