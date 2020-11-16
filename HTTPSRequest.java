@@ -81,10 +81,8 @@ public class HTTPSRequest implements Runnable {
         BufferedReader br = new BufferedReader(new InputStreamReader(stream));
         String currLine;
         String insContent = "";
-        int bufferLength = 0;
 
         while ((currLine = br.readLine()) != null) {
-            bufferLength += currLine.length();
             insContent = insContent + currLine + "\n";
         }
         br.close();
