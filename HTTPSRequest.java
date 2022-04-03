@@ -1,6 +1,5 @@
 // Written by Regan Willis 2020
 
-import android.util.Log;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
